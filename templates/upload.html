@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block stylesheet %}
+  	<style type="text/css">
+  		body {
+  			background-image: url("data:image/jpeg;base64,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");
+  		}
+  		.button-blue {
+  			background-color: blue;
+  		}
+  		.button-grey {
+  			background-color: #a3a375;
+  		}
+
+		input {
+			border-radius: 4px;
+			border : none;
+			color: #FFFFFF;
+			text-align: center;	
+			size: 250;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+			padding: 15px;
+			font-size: 28px;		 
+		}
+
+  		.button{
+			border-radius: 4px;
+			border: none;
+			color: #FFFFFF;
+			text-align: center;
+			font-size: 28px;
+			padding: 15px;
+			width: 250px;
+			transition: all 0.5s;
+			cursor: pointer;
+			margin: 5px;
+		}
+
+		.button span {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			transition: 0.5s;
+		}
+
+		.button span:after {
+			  content: '\00bb';
+			  position: absolute;
+			  opacity: 0;
+			  top: 0;
+			  right: -20px;
+			  transition: 0.5s;
+		}
+
+		#choose {
+			font-size: 28px;
+		}
+
+		.button:hover span {
+			padding-right: 25px;
+		}
+
+		.button:hover span:after {
+			opacity: 1;
+			right: 0;
+		}
+
+		h1 {
+			color: white;
+		}
+
+		.card-img {
+			height: 250px;
+		}
+		
+	</style>
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="row"  style="margin-top: 20px;">
+			<div class="col-sm-6 col-md-6 col-lg-6"><h1><center>Original Image</center></h1></div>
+			<div class="col-sm-6 col-md-6 col-lg-6"><h1><center>Transformed Image</center></h1></div>
+		</div>
+		<div class="row"  style="margin-top: 50px;">
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<center>
+					<div class="card-deck">
+						<div class="card bg-danger" style="width: 60%; height: 250px">
+							<div class="card-body text-center" >
+								{% if uploaded_file_url %}
+									<img src="../../{{ uploaded_file_url }}"/ class="card-img">
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</center>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-6">
+				<center>
+					<div class="card-deck">
+						<div class="card bg-danger" style="width: 60%; height: 250px;">
+							<div class="card-body text-center" id="result">
+							</div>
+						</div>
+					</div>
+				</center>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 75px;">
+			<form method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<input type="file" name="myfile" id="selectedFile" style="display: none;"/>
+					<center><span onclick="document.getElementById('selectedFile').click();" class="button button-grey"><span id="choose" style="margin: 5px; padding: 15px; font-size: 28px;">Choose Image</span></span></center>
+				</div>
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<center><button class="button button-grey" type="submit"><span>Upload Image </span></button></center>
+				</div>
+			</form>
+			{% if uploaded_file_url %}
+				<div class="col-sm-4 col-md-4 col-lg-4">
+					<center><button id="start" class="button button-blue"><span>Start Process </span></button></center>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+
+  
+  <script>
+      
+    $('#start').click(function(event){
+      var currentRequest = $.ajax({
+        url : 'process/',
+        cache : false,
+        data : {
+          'filepath' : "{{ uploaded_file_url }}"
+        },
+        beforeSend : function(){           
+          if(currentRequest != null) {
+            currentRequest.abort();
+          }
+        },
+        success : function(data) {
+          var img = new Image(100,200)
+          img.src = '../../media/output.jpg';
+		  img.classList = "card-img";
+          document.getElementById('result').appendChild(img);
+        },
+        error: function(data) { 
+          alert('Got an error =' + data);
+        }
+      })
+    })
+    
+  </script>
+
+{% endblock %}
